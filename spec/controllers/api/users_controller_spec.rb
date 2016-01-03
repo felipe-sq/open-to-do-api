@@ -6,6 +6,7 @@ describe Api::UsersController do
     let!(:user_2) { FactoryGirl.create(:user) }
     let(:result) { JSON.parse(response.body) }
     before do
+      
       get :index
     end
 
