@@ -6,6 +6,7 @@ FactoryGirl.define do
     name RandomData.random_name
     sequence(:email){|n| "user_#{n}@factory.com" }
     password_digest pw
+    username RandomData.random_sentence
   end
 end
 
