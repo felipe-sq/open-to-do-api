@@ -3,7 +3,7 @@ class Api::UsersController < ApiController
 
   def index
     users = User.all
-    UserSerializer.new(users).to_json
+    #UserSerializer.new(User.all).to_json
     render json: users, each_serializer: UserSerializer
   end
 
