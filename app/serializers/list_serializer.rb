@@ -11,4 +11,5 @@ end
 #  updated_at  :datetime         not null
 #  name        :string
 #  description :text
+#  user_id     :integer
 #
