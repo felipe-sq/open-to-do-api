@@ -1,10 +1,12 @@
-class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :password_digest, :created_at
+include RandomData
 
-  has_many :items
-
-  def created_at
-    object.created_at.strftime('%B %d, %Y')
+FactoryGirl.define do
+  pw = RandomData.random_sentence
+  factory :user do
+    name RandomData.random_name
+    sequence(:email){|n| "user_#{n}@factory.com" }
+    password_digest pw
+    username RandomData.random_sentence
   end
 end
 
