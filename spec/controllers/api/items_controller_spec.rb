@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Api::ListsController do
+describe Api::ItemsController do
   describe 'POST create' do
     let!(:user_1) { FactoryGirl.create(:user) }
     let!(:list_1) { FactoryGirl.create(:list) }
@@ -17,7 +17,7 @@ describe Api::ListsController do
       expect(response.content_type).to eq 'application/json'
     end
 
-    it 'creates a list with the correct attributes' do
+    it 'creates an item with the correct attributes' do
       hashed_json = JSON.parse(response.body)
       expect(@new_item.name).to eq hashed_json['name']
     end
