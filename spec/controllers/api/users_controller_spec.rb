@@ -24,7 +24,7 @@ describe Api::UsersController do
     end
 
     it 'should have properties for user 1' do
-      user = result.detect { |u| u['id'].to_i == user_1.id }
+      user = result.detect { |u| u['id'] == user_1.id }
       expect(user['name']).to eq(user_1.name)
       expect(user['email']).to eq(user_1.email)
     end
