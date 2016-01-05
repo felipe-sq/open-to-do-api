@@ -2,11 +2,12 @@ include RandomData
 
 FactoryGirl.define do
   pw = RandomData.random_sentence
+  name = RandomData.random_name
   factory :user do
-    name RandomData.random_name
+    name name
     sequence(:email) { |n| "user_#{n}@factory.com" }
     password pw
-    username RandomData.random_sentence
+    username name
   end
 end
 
