@@ -6,11 +6,12 @@ describe Api::UsersController do
     let!(:user_2) { FactoryGirl.create(:user) }
     let(:result) { JSON.parse(response.body) }
     before do
+      @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user_1.username, user_1.password)
       get :index
     end
 
     it 'returns valid json' do
-      expect(JSON.parse(response.body)).to_not raise_error
+      expect { JSON.parse(response.body) }.to_not raise_error
     end
 
     it 'returns success' do
@@ -23,7 +24,7 @@ describe Api::UsersController do
     end
 
     it 'should have properties for user 1' do
-      user = result.detect { |u| u['id'] == user_1.id }
+      user = result.detect { |u| u['id'].to_i == user_1.id }
       expect(user['name']).to eq(user_1.name)
       expect(user['email']).to eq(user_1.email)
     end
