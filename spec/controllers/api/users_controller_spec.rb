@@ -30,26 +30,26 @@ describe Api::UsersController do
     end
   end
 
-  describe "POST create" do
+  describe 'POST create' do
     let!(:user_1) { FactoryGirl.create(:user) }
     before do
       @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user_1.username, user_1.password)
       @new_user = build(:user)
-      post :create, user: { username: @new_user.username, password: @new_user.password }
+      post :create, user: { username: 'new_user', password: 'password' }
     end
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
 
-    it "returns json content type" do
+    it 'returns json content type' do
       expect(response.content_type).to eq 'application/json'
     end
 
-    it "creates a user with the correct attributes" do
+    it 'creates a user with the correct attributes' do
       hashed_json = JSON.parse(response.body)
       puts response.body
-      expect(@new_user.username).to eq hashed_json["username"]
-      expect(@new_user.password).to eq hashed_json["password"]
+      expect(@new_user.username).to eq hashed_json['new_user']
+      expect(@new_user.password).to eq hashed_json['password']
     end
   end
 end
