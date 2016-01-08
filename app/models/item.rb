@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :list
 end
 
 # == Schema Information
@@ -8,7 +8,7 @@ end
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  list_id    :integer
 #

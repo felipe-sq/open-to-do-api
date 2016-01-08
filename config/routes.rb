@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users do
-      resources :lists, :controllers => { :users => "create"}
+      resources :lists
     end
 
     resources :lists, only: [] do

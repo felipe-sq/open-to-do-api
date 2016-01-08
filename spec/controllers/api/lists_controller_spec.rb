@@ -6,7 +6,7 @@ describe Api::ListsController do
     before do
       @request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(user_1.username, user_1.password)
       @new_list = build(:list)
-      post :create, list: { name: @new_list.name, description: @new_list.description }
+      post :create, list: { name: @new_list.name, description: @new_list.description, user_id: @new_list.user_id }
     end
     it 'returns http success' do
       expect(response).to have_http_status(:success)

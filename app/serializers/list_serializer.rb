@@ -1,5 +1,7 @@
 class ListSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description
+  attributes :id, :name, :description, :user
+
+  has_many :items
 end
 
 # == Schema Information
