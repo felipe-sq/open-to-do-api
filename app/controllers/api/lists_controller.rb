@@ -11,6 +11,15 @@ class Api::ListsController < ApiController
     end
   end
 
+  def destroy
+    user = User.find(params[:user_id])
+    list = user.lists.find(params[:id])
+    list.destroy
+    render json: { :message => :"List #{params[:id]} has been deleted" }, status: :ok
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Record not found' }, status: :not_found
+  end
+
   private
 
   def list_params

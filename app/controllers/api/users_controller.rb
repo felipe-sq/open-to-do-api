@@ -17,6 +17,14 @@ class Api::UsersController < ApiController
     end
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    render json: { :message => :"User #{params[:id]} has been deleted" }, status: :ok
+  rescue ActiveRecord::RecordNotFound
+    render json: {}, status: :not_found
+  end
+
   private
 
   def user_params
