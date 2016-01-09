@@ -15,9 +15,18 @@ class Api::ListsController < ApiController
     user = User.find(params[:user_id])
     list = user.lists.find(params[:id])
     list.destroy
-    render json: { :message => :"List #{params[:id]} has been deleted" }, status: :ok
+    render json: { message: :"List #{params[:id]} has been deleted" }, status: :ok
   rescue ActiveRecord::RecordNotFound
     render json: { error: 'List not found' }, status: :not_found
+  end
+
+  def update
+    list = List.find(params[:id])
+    if list.update(list_params)
+      render json: list
+    else
+      render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
