@@ -1,5 +1,5 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :id, :name, :list_id
+  attributes :id, :name, :list_id, :complete
 end
 
 # == Schema Information
@@ -11,4 +11,5 @@ end
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  list_id    :integer
+#  complete   :boolean          default(FALSE)
 #

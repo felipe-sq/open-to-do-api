@@ -22,8 +22,10 @@ class Api::ListsController < ApiController
 
   def update
     list = List.find(params[:id])
-    if list.update(list_params)
+    if list.public? && list.update(list_params)
       render json: list
+    elsif list.public == false
+      render json: { error: :"This list is private and cannot be edited."}, status: 400
     else
       render json: { errors: list.errors.full_messages }, status: :unprocessable_entity
     end
