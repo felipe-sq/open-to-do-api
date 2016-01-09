@@ -11,5 +11,5 @@ end
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  list_id    :integer
-#  complete   :boolean          default(FALSE)
+#  completed  :boolean          default(FALSE)
 #

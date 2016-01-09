@@ -11,30 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160109025137) do
+ActiveRecord::Schema.define(version: 20160109065202) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.integer  "list_id"
-    t.boolean  "complete",   default: false
+    t.boolean  "completed",  default: false
   end
 
   add_index "items", ["list_id"], name: "index_items_on_list_id"
 
   create_table "lists", force: :cascade do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
-    t.boolean  "public",      default: true
+    t.integer  "permissions", default: 0
   end
 
   add_index "lists", ["description"], name: "index_lists_on_description"
   add_index "lists", ["name"], name: "index_lists_on_name"
-  add_index "lists", ["public"], name: "index_lists_on_public"
+  add_index "lists", ["permissions"], name: "index_lists_on_permissions"
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
 
   create_table "users", force: :cascade do |t|

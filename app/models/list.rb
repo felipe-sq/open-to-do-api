@@ -1,6 +1,8 @@
 class List < ActiveRecord::Base
   belongs_to :user
   has_many :items
+
+  enum permissions: [:open, :private, :viewable]
 end
 
 # == Schema Information
@@ -13,5 +15,5 @@ end
 #  name        :string
 #  description :text
 #  user_id     :integer
-#  public      :boolean          default(TRUE)
+#  permissions :integer          default(0)
 #

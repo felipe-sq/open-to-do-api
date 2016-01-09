@@ -1,8 +1,13 @@
 class Api::ListsController < ApiController
   before_action :authenticated?
 
+  def show
+    list = List.find(params[:id])
+  end
+
   def create
-    list = List.new(list_params)
+    user = User.find(params[:user_id])
+    list = user.lists.new(list_params)
     if list.save
       render json: list
     else
@@ -22,7 +27,7 @@ class Api::ListsController < ApiController
 
   def update
     list = List.find(params[:id])
-    if list.public? && list.update(list_params)
+    if { list.permissions == 0 && list.update(list_params) }
       render json: list
     elsif list.public == false
       render json: { error: :"This list is private and cannot be edited."}, status: 400
@@ -34,6 +39,6 @@ class Api::ListsController < ApiController
   private
 
   def list_params
-    params.require(:list).permit(:name, :description, :public, :user_id)
+    params.require(:list).permit(:name, :description, :permissions)
   end
 end
