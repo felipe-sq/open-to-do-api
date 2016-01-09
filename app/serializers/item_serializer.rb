@@ -1,5 +1,5 @@
 class ItemSerializer < ActiveModel::Serializer
-  attributes :id, :name, :list_id, :complete
+  attributes :id, :name, :list_id, :completed
 end
 
 # == Schema Information

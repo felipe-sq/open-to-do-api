@@ -2,7 +2,10 @@ class List < ActiveRecord::Base
   belongs_to :user
   has_many :items
 
-  enum permissions: [:open, :private, :viewable]
+  enum permissions: [:open, :locked]
+
+  validates_inclusion_of :permissions, :in => %w( open locked ), message: "%{value} is not a valid permissions. Please use either 'open' or 'locked'."
+
 end
 
 # == Schema Information
