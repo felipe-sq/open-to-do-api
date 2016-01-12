@@ -14,5 +14,5 @@ end
 #  name        :string
 #  description :text
 #  user_id     :integer
-#  permissions :integer          default(0)
+#  permissions :string           default("open")
 #
